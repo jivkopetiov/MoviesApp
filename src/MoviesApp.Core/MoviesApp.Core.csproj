@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EFC11645-FAB4-4C30-A498-29F5ECDF77E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WatTmdb</RootNamespace>
+    <AssemblyName>WatTmdb</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FRAMEWORK</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestSharp\Authenticators\HttpBasicAuthenticator.cs" />
+    <Compile Include="RestSharp\Authenticators\IAuthenticator.cs" />
+    <Compile Include="RestSharp\Authenticators\NtlmAuthenticator.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth1Authenticator.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth2Authenticator.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\Extensions\CollectionExtensions.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\Extensions\OAuthExtensions.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\Extensions\StringExtensions.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\Extensions\TimeExtensions.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\HttpPostParameter.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\HttpPostParameterType.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\OAuthParameterHandling.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\OAuthSignatureMethod.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\OAuthSignatureTreatment.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\OAuthTools.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\OAuthType.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\OAuthWebQueryInfo.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\OAuthWorkflow.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\WebPair.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\WebPairCollection.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\WebParameter.cs" />
+    <Compile Include="RestSharp\Authenticators\OAuth\WebParameterCollection.cs" />
+    <Compile Include="RestSharp\Authenticators\SimpleAuthenticator.cs" />
+    <Compile Include="RestSharp\Compression\ZLib\Crc32.cs" />
+    <Compile Include="RestSharp\Compression\ZLib\FlushType.cs" />
+    <Compile Include="RestSharp\Compression\ZLib\GZipStream.cs" />
+    <Compile Include="RestSharp\Compression\ZLib\Inflate.cs" />
+    <Compile Include="RestSharp\Compression\ZLib\InfTree.cs" />
+    <Compile Include="RestSharp\Compression\ZLib\ZLib.cs" />
+    <Compile Include="RestSharp\Compression\ZLib\ZLibCodec.cs" />
+    <Compile Include="RestSharp\Compression\ZLib\ZLibConstants.cs" />
+    <Compile Include="RestSharp\Compression\ZLib\ZLibStream.cs" />
+    <Compile Include="RestSharp\Deserializers\DeserializeAsAttribute.cs" />
+    <Compile Include="RestSharp\Deserializers\DotNetXmlDeserializer.cs" />
+    <Compile Include="RestSharp\Deserializers\IDeserializer.cs" />
+    <Compile Include="RestSharp\Deserializers\JsonDeserializer.cs" />
+    <Compile Include="RestSharp\Deserializers\XmlAttributeDeserializer.cs" />
+    <Compile Include="RestSharp\Deserializers\XmlDeserializer.cs" />
+    <Compile Include="RestSharp\Enum.cs" />
+    <Compile Include="RestSharp\Extensions\MiscExtensions.cs" />
+    <Compile Include="RestSharp\Extensions\MonoHttp\Helpers.cs" />
+    <Compile Include="RestSharp\Extensions\MonoHttp\HtmlEncoder.cs" />
+    <Compile Include="RestSharp\Extensions\MonoHttp\HttpUtility.cs" />
+    <Compile Include="RestSharp\Extensions\ReflectionExtensions.cs" />
+    <Compile Include="RestSharp\Extensions\ResponseExtensions.cs" />
+    <Compile Include="RestSharp\Extensions\StringExtensions.cs" />
+    <Compile Include="RestSharp\Extensions\XmlExtensions.cs" />
+    <Compile Include="RestSharp\FileParameter.cs" />
+    <Compile Include="RestSharp\Http.Async.cs" />
+    <Compile Include="RestSharp\Http.cs" />
+    <Compile Include="RestSharp\Http.Sync.cs" />
+    <Compile Include="RestSharp\HttpCookie.cs" />
+    <Compile Include="RestSharp\HttpFile.cs" />
+    <Compile Include="RestSharp\HttpHeader.cs" />
+    <Compile Include="RestSharp\HttpParameter.cs" />
+    <Compile Include="RestSharp\HttpResponse.cs" />
+    <Compile Include="RestSharp\IHttp.cs" />
+    <Compile Include="RestSharp\IHttpFactory.cs" />
+    <Compile Include="RestSharp\IHttpResponse.cs" />
+    <Compile Include="RestSharp\IRestClient.cs" />
+    <Compile Include="RestSharp\IRestRequest.cs" />
+    <Compile Include="RestSharp\IRestResponse.cs" />
+    <Compile Include="RestSharp\Parameter.cs" />
+    <Compile Include="RestSharp\RestClient.Async.cs" />
+    <Compile Include="RestSharp\RestClient.cs" />
+    <Compile Include="RestSharp\RestClient.Sync.cs" />
+    <Compile Include="RestSharp\RestClientExtensions.cs" />
+    <Compile Include="RestSharp\RestRequest.cs" />
+    <Compile Include="RestSharp\RestRequestAsyncHandle.cs" />
+    <Compile Include="RestSharp\RestResponse.cs" />
+    <Compile Include="RestSharp\RestResponseCookie.cs" />
+    <Compile Include="RestSharp\Serializers\DotNetXmlSerializer.cs" />
+    <Compile Include="RestSharp\Serializers\ISerializer.cs" />
+    <Compile Include="RestSharp\Serializers\JsonSerializer.cs" />
+    <Compile Include="RestSharp\Serializers\SerializeAsAttribute.cs" />
+    <Compile Include="RestSharp\Serializers\XmlSerializer.cs" />
+    <Compile Include="RestSharp\SharedAssemblyInfo.cs" />
+    <Compile Include="RestSharp\SimpleJson.cs" />
+    <Compile Include="RestSharp\Validation\Require.cs" />
+    <Compile Include="RestSharp\Validation\Validate.cs" />
+    <Compile Include="WatTmdb\Tmdb.Async.cs" />
+    <Compile Include="WatTmdb\Tmdb.cs" />
+    <Compile Include="WatTmdb\Tmdb.Sync.cs" />
+    <Compile Include="WatTmdb\TmdbAuthSession.cs" />
+    <Compile Include="WatTmdb\TmdbCollection.cs" />
+    <Compile Include="WatTmdb\TmdbCollectionImages.cs" />
+    <Compile Include="WatTmdb\TmdbCompany.cs" />
+    <Compile Include="WatTmdb\TmdbCompanyMovies.cs" />
+    <Compile Include="WatTmdb\TmdbCompanySearch.cs" />
+    <Compile Include="WatTmdb\TmdbConfiguration.cs" />
+    <Compile Include="WatTmdb\TmdbError.cs" />
+    <Compile Include="WatTmdb\TmdbGenre.cs" />
+    <Compile Include="WatTmdb\TmdbGenreMovies.cs" />
+    <Compile Include="WatTmdb\TmdbLatestMovie.cs" />
+    <Compile Include="WatTmdb\TmdbMovie.cs" />
+    <Compile Include="WatTmdb\TmdbMovieAlternateTitles.cs" />
+    <Compile Include="WatTmdb\TmdbMovieCast.cs" />
+    <Compile Include="WatTmdb\TmdbMovieImages.cs" />
+    <Compile Include="WatTmdb\TmdbMovieKeywords.cs" />
+    <Compile Include="WatTmdb\TmdbMovieReleases.cs" />
+    <Compile Include="WatTmdb\TmdbMovieSearch.cs" />
+    <Compile Include="WatTmdb\TmdbMovieTrailers.cs" />
+    <Compile Include="WatTmdb\TmdbNowPlaying.cs" />
+    <Compile Include="WatTmdb\TmdbPerson.cs" />
+    <Compile Include="WatTmdb\TmdbPersonCredits.cs" />
+    <Compile Include="WatTmdb\TmdbPersonImages.cs" />
+    <Compile Include="WatTmdb\TmdbPersonSearch.cs" />
+    <Compile Include="WatTmdb\TmdbPopular.cs" />
+    <Compile Include="WatTmdb\TmdbAsyncResult.cs" />
+    <Compile Include="WatTmdb\TmdbSearchResultBase.cs" />
+    <Compile Include="WatTmdb\TmdbSimilarMovies.cs" />
+    <Compile Include="WatTmdb\TmdbAuthToken.cs" />
+    <Compile Include="WatTmdb\TmdbTopRated.cs" />
+    <Compile Include="WatTmdb\TmdbTranslations.cs" />
+    <Compile Include="WatTmdb\TmdbUpcoming.cs" />
+    <Compile Include="WatTmdb\Utility.cs" />
+    <Compile Include="WatTmdb\WatJsonDeserializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
