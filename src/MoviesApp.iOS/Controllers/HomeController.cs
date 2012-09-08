@@ -52,23 +52,81 @@ namespace MoviesApp.iOS
 				return parent.data.Count;
 			}
 
+			public override float GetHeightForRow (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			{
+				return 92;
+			}
+
 			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 			{
 				var item = parent.data[indexPath.Row];
 
-				var cell = new UITableViewCell(UITableViewCellStyle.Value1, "cell");
+				var cell = tableView.DequeueReusableCell (MovieCell.Identifier) as MovieCell;
+				if (cell == null)
+					cell = new MovieCell(item, tableView);
 
-				string text = item.title;
-				if (item.release_date.HasValue) {
-					text += " (" + item.release_date.Value.Year.ToString()  + ")";
-				}
-
-				if (!string.IsNullOrEmpty (item.poster_path))
-					ImageStore.UpdateImage(cell.ImageView, Constants.GetImageUrl(item.poster_path));
-
-				cell.TextLabel.Text = text;
+				cell.UpdateUI();
 
 				return cell;
+			}
+
+			private class MovieCell : UITableViewCell, IImageUpdated {
+				public static readonly string Identifier = "moviecell";
+
+				private NowPlaying _movie;
+				private UITableView _table;
+
+				private UILabel _title;
+				private UIImageView _imageView;
+
+				private static UIFont _textFont = UIFont.BoldSystemFontOfSize(16);
+
+				public MovieCell (NowPlaying movie, UITableView table)
+				{
+					_movie = movie;
+					_table = table;
+
+					Accessory = UITableViewCellAccessory.DisclosureIndicator;
+
+					float height = this.StringSize (GetText (), _textFont, new SizeF(320 - 90, 92)).Height;
+
+					_title = new UILabel(new RectangleF(70, 5, 320 - 90, height));
+					_title.BackgroundColor = UIColor.Clear;
+					_title.Lines = 0;
+					_title.Font = _textFont;
+					AddSubview (_title);
+
+					_imageView = new UIImageView(new RectangleF(3, 3, 60, 86));
+					_imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
+					AddSubview(_imageView);
+				}
+
+				private string GetText() {
+					string text = _movie.title;
+					if (_movie.release_date.HasValue) {
+						text += " (" + _movie.release_date.Value.Year.ToString()  + ")";
+					}
+
+					return text;
+				}
+
+				public void UpdateUI() {
+
+					if (!string.IsNullOrEmpty (_movie.poster_path)) {
+						var image = ImageLoader.DefaultRequestImage(Constants.GetImageUrl(_movie.poster_path), this);
+						_imageView.Image = image;
+					}
+					
+					_title.Text = GetText ();
+				}
+
+				void IImageUpdated.UpdatedImage (Uri uri)
+				{
+					if (uri == null) return;
+
+					_table.ReloadData ();
+					//root.TableView.ReloadRows (new NSIndexPath [] { IndexPath }, UITableViewRowAnimation.None);
+				}
 			}
 		}
 	}
