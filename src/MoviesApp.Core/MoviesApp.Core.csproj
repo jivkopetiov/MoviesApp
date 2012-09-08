@@ -120,6 +120,7 @@
     <Compile Include="RestSharp\SimpleJson.cs" />
     <Compile Include="RestSharp\Validation\Require.cs" />
     <Compile Include="RestSharp\Validation\Validate.cs" />
+    <Compile Include="Infrastructure\StringEx.cs" />
     <Compile Include="WatTmdb\Tmdb.Async.cs" />
     <Compile Include="WatTmdb\Tmdb.cs" />
     <Compile Include="WatTmdb\Tmdb.Sync.cs" />

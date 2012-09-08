@@ -26,6 +26,7 @@ namespace WatTmdb.V3
             var resp = client.Execute<T>(request);
 
             ResponseContent = resp.Content;
+            Console.WriteLine(ResponseContent);
             ResponseHeaders = resp.Headers.ToDictionary(k => k.Name, v => v.Value);
 
             if (resp.ResponseStatus == ResponseStatus.Completed)
