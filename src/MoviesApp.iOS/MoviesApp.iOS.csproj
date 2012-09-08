@@ -89,6 +89,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Infrastructure\LoadingDataSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
 </Project>
