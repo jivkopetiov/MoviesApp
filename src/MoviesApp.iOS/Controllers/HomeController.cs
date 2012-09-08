@@ -16,14 +16,14 @@ namespace MoviesApp.iOS
 
 		public HomeController ()
 		{
+			Title = "Home";
+
 			api = new Tmdb(Constants.ApiKey);
 		}
 
 		public override void ViewDidLoad ()
 		{
-			View.BackgroundColor = UIColor.Blue;
-
-			table = new UITableView(new RectangleF(0, 0, View.Frame.Width, View.Frame.Height), UITableViewStyle.Grouped);
+			table = new UITableView(new RectangleF(0, 0, View.Frame.Width, View.Frame.Height - 44), UITableViewStyle.Grouped);
 			table.Source = new LoadingDataSource();
 			View.Add (table);
 
@@ -38,9 +38,16 @@ namespace MoviesApp.iOS
 			});
 		}
 
+		public override void ViewWillAppear (bool animated)
+		{
+			if (table != null)
+				table.DeselectRow(table.IndexPathForSelectedRow, true);
+		}
+
 		private class DataSource : UITableViewSource {
 
 			private HomeController parent;
+			private MovieDetailsController nextController;
 
 			public DataSource (HomeController parent)
 			{
@@ -68,6 +75,14 @@ namespace MoviesApp.iOS
 				cell.UpdateUI();
 
 				return cell;
+			}
+
+			public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			{
+				var movie = parent.data[indexPath.Row];
+
+				nextController = new MovieDetailsController(movie);
+				parent.NavigationController.PushViewController (nextController, true);
 			}
 
 			private class MovieCell : UITableViewCell, IImageUpdated {
