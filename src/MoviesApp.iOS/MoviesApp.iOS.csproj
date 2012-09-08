@@ -91,6 +91,11 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Infrastructure\LoadingDataSource.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Infrastructure\ImageCache.cs" />
+    <Compile Include="Infrastructure\ImageStore.cs" />
+    <Compile Include="Infrastructure\Context.cs" />
+    <Compile Include="Infrastructure\StringExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

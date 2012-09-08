@@ -16,7 +16,7 @@ namespace MoviesApp.iOS
 
 		public HomeController ()
 		{
-			api = new Tmdb("e7ea08e0ed9aba51ea90d5ffe68fa672");
+			api = new Tmdb(Constants.ApiKey);
 		}
 
 		public override void ViewDidLoad ()
@@ -57,7 +57,16 @@ namespace MoviesApp.iOS
 				var item = parent.data[indexPath.Row];
 
 				var cell = new UITableViewCell(UITableViewCellStyle.Value1, "cell");
-				cell.TextLabel.Text = item.title + "(" + item.release_date + ")";
+
+				string text = item.title;
+				if (item.release_date.HasValue) {
+					text += " (" + item.release_date.Value.Year.ToString()  + ")";
+				}
+
+				if (!string.IsNullOrEmpty (item.poster_path))
+					ImageStore.UpdateImage(cell.ImageView, Constants.GetImageUrl(item.poster_path));
+
+				cell.TextLabel.Text = text;
 
 				return cell;
 			}
