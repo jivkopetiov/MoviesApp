@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesApp.Core", "MoviesApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesApp.Cmd", "MoviesApp.Cmd\MoviesApp.Cmd.csproj", "{698CCF46-461E-4D6E-BD4B-080C234C1E38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesApp.iOS", "MoviesApp.iOS\MoviesApp.iOS.csproj", "{C103B95F-A46B-429F-9922-8F9AEF870835}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{698CCF46-461E-4D6E-BD4B-080C234C1E38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -25,6 +33,30 @@ Global
 		{698CCF46-461E-4D6E-BD4B-080C234C1E38}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{698CCF46-461E-4D6E-BD4B-080C234C1E38}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{698CCF46-461E-4D6E-BD4B-080C234C1E38}.Release|x86.ActiveCfg = Release|Any CPU
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|Mixed Platforms.Build.0 = Debug|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|x86.ActiveCfg = Debug|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Debug|x86.Build.0 = Debug|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|iPhone.Build.0 = Release|iPhone
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|Mixed Platforms.ActiveCfg = Release|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|Mixed Platforms.Build.0 = Release|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|x86.ActiveCfg = Release|iPhoneSimulator
+		{C103B95F-A46B-429F-9922-8F9AEF870835}.Release|x86.Build.0 = Release|iPhoneSimulator
 		{EFC11645-FAB4-4C30-A498-29F5ECDF77E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EFC11645-FAB4-4C30-A498-29F5ECDF77E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFC11645-FAB4-4C30-A498-29F5ECDF77E8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -37,7 +69,7 @@ Global
 		{EFC11645-FAB4-4C30-A498-29F5ECDF77E8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MoviesApp.Cmd\MoviesApp.Cmd.csproj
+		StartupItem = MoviesApp.iOS\MoviesApp.iOS.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
