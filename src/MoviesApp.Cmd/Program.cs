@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using WatTmdb.V3;
 
 namespace MoviesApp.Cmd
@@ -11,7 +10,7 @@ namespace MoviesApp.Cmd
     {
         static void Main(string[] args)
         {
-            
+
         }
     }
 }
