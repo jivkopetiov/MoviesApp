@@ -97,6 +97,7 @@
     <Compile Include="Infrastructure\ImageLoader.cs" />
     <Compile Include="Infrastructure\LRUCache.cs" />
     <Compile Include="Controllers\MovieDetailsController.cs" />
+    <Compile Include="Infrastructure\MovieCell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

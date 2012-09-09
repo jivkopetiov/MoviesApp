@@ -12,6 +12,7 @@ namespace MoviesApp.iOS
 		private Tmdb _api;
 		private int	_movieId;
 		private TmdbMovie _data;
+		private TmdbMovieCast _cast;
 
 		public MovieDetailsController (NowPlaying movie)
 		{
@@ -30,7 +31,8 @@ namespace MoviesApp.iOS
 			
 			ThreadPool.QueueUserWorkItem (delegate {
 				_data = _api.GetMovieInfo(_movieId);
-				
+				_cast = _api.GetMovieCast(_movieId);
+
 				InvokeOnMainThread(delegate {
 					_table.Source = new DataSource(this);
 					_table.ReloadData ();
@@ -52,19 +54,41 @@ namespace MoviesApp.iOS
 			{
 				this.parent = parent;
 			}
-			
-			public override int RowsInSection (UITableView tableview, int section)
+
+			public override int NumberOfSections (UITableView tableView)
 			{
 				return 2;
 			}
 
+			public override int RowsInSection (UITableView tableview, int section)
+			{
+				if (section == 0)
+					return 1;
+				else if (section == 1) {
+					if (parent._cast.cast.Count == 0)
+						return 0;
+					else if (parent._cast.cast.Count < 3)
+						return parent._cast.cast.Count + 1;
+					else 
+						return 4;
+				}
+				else 
+					throw new NotSupportedException("section");
+			}
+
 			public override float GetHeightForRow (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 			{
-				switch(indexPath.Row)
-				{
-					case 0: return 92;
-					default: return 44;
+				if (indexPath.Section == 0) {
+					return 92;
 				}
+				else if (indexPath.Section == 1) {
+					if (parent._cast.cast.Count >= 3 && indexPath.Row == 3)
+						return 40;
+					else 
+						return 76;
+				}
+				else 
+					throw new NotSupportedException("section");
 			}
 			
 			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -72,21 +96,28 @@ namespace MoviesApp.iOS
 				var movie = parent._data;
 				UITableViewCell cell = null;
 
-				switch(indexPath.Row) {
-
-				case 0:
-					cell = new UITableViewCell(UITableViewCellStyle.Default, "cell");
-					cell.TextLabel.Text = movie.title;
-					cell.ImageView.Image = ImageLoader.DefaultRequestImage(Constants.GetImageUrl(movie.poster_path), this);
-					break;
-				case 1:
-					cell = new UITableViewCell(UITableViewCellStyle.Subtitle, "cell");
-					cell.TextLabel.Text = "Overview";
-					cell.DetailTextLabel.Text = movie.overview;
-					break;
-				default:
-					throw new InvalidOperationException("Invalid row index");
+				if (indexPath.Section == 0) {
+					var c = new MovieCell(movie.title, movie.overview, movie.poster_path, tableView);
+					c.UpdateUI ();
+					cell = c;
 				}
+				else if (indexPath.Section == 1) {
+					if (parent._cast.cast.Count >= 3 && indexPath.Row == 3) {
+						cell = new UITableViewCell(UITableViewCellStyle.Default, "cell");
+						cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+						cell.TextLabel.Text = "All cast";
+					}
+					else {
+						var person = parent._cast.cast[indexPath.Row];
+						cell = new UITableViewCell(UITableViewCellStyle.Subtitle, "cell");
+						cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+						cell.TextLabel.Text = person.name;
+						cell.DetailTextLabel.Text = person.character;
+						cell.ImageView.Image = ImageLoader.DefaultRequestImage(Constants.GetImageUrl (person.profile_path), this);
+					}
+				}
+				else 
+					throw new NotSupportedException("section");
 
 				return cell;
 			}
