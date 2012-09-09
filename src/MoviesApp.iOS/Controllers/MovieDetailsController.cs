@@ -3,6 +3,7 @@ using MonoTouch.UIKit;
 using WatTmdb.V3;
 using System.Drawing;
 using System.Threading;
+using MoviesApp.Core;
 
 namespace MoviesApp.iOS
 {
@@ -56,7 +57,7 @@ namespace MoviesApp.iOS
 
 			public override int NumberOfSections (UITableView tableView)
 			{
-				return 2;
+				return 3;
 			}
 
 			public override int RowsInSection (UITableView tableview, int section)
@@ -71,8 +72,19 @@ namespace MoviesApp.iOS
 					else 
 						return 4;
 				}
+				else if (section == 2) {
+					return 9;
+				}
 				else 
 					throw new NotSupportedException("section");
+			}
+
+			public override string TitleForHeader (UITableView tableView, int section)
+			{
+				if (section == 1)
+					return "Cast";
+				else
+					return "";
 			}
 
 			public override float GetHeightForRow (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -86,6 +98,8 @@ namespace MoviesApp.iOS
 					else 
 						return 76;
 				}
+				else if (indexPath.Section == 2)
+					return 44;
 				else 
 					throw new NotSupportedException("section");
 			}
@@ -115,8 +129,41 @@ namespace MoviesApp.iOS
 						cell.ImageView.Image = ImageLoader.DefaultRequestImage(Constants.GetImageUrl (person.profile_path), this);
 					}
 				}
+				else if (indexPath.Section == 2) {
+					if (indexPath.Row == 0)
+						cell = GetInfoCell("Genres", movie.genres.JoinStrings (g => g.name, ", "));
+					else if (indexPath.Row == 1)
+						cell = GetInfoCell("Budget", movie.budget.ToString ());
+					else if (indexPath.Row == 2)
+						cell = GetInfoCell("Home Page", movie.homepage);
+					else if (indexPath.Row == 3)
+						cell = GetInfoCell ("Go to Imdb", "", true);
+					else if (indexPath.Row == 4)
+						cell = GetInfoCell ("Popularity", movie.popularity.ToString ());
+					else if (indexPath.Row == 5)
+						cell = GetInfoCell ("Companies", movie.production_companies.JoinStrings (c => c.name, ", "));
+					else if (indexPath.Row == 6)
+						cell = GetInfoCell ("Countries", movie.production_countries.JoinStrings (c => c.name, ", "));
+					else if (indexPath.Row == 7)
+						cell = GetInfoCell("Revenue", movie.revenue.ToString ());
+					else if (indexPath.Row == 8)
+						cell = GetInfoCell("Runtime", movie.runtime.ToString ());
+				}
 				else 
 					throw new NotSupportedException("section");
+
+				return cell;
+			}
+
+			private UITableViewCell GetInfoCell(string title, string value, bool isLink = false) {
+
+				var cell = new UITableViewCell(UITableViewCellStyle.Value2, "cell");
+
+				if (isLink)
+					cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+
+				cell.TextLabel.Text = title;
+				cell.DetailTextLabel.Text = value;
 
 				return cell;
 			}
