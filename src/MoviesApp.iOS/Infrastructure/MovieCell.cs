@@ -2,6 +2,7 @@ using System;
 using MonoTouch.UIKit;
 using WatTmdb.V3;
 using System.Drawing;
+using MonoTouch.Dialog.Utilities;
 
 namespace MoviesApp.iOS
 {

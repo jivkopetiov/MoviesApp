@@ -97,8 +97,6 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Infrastructure\Context.cs" />
     <Compile Include="Infrastructure\StringExtensions.cs" />
-    <Compile Include="Infrastructure\ImageLoader.cs" />
-    <Compile Include="Infrastructure\LRUCache.cs" />
     <Compile Include="Controllers\MovieDetailsController.cs" />
     <Compile Include="Infrastructure\MovieCell.cs" />
     <Compile Include="Controllers\MoviesController.cs" />

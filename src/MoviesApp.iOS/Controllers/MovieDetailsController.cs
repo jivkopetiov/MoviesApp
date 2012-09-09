@@ -4,6 +4,7 @@ using WatTmdb.V3;
 using System.Drawing;
 using System.Threading;
 using MoviesApp.Core;
+using MonoTouch.Dialog.Utilities;
 
 namespace MoviesApp.iOS
 {
