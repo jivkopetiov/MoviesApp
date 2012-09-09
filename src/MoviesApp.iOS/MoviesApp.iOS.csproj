@@ -100,6 +100,7 @@
     <Compile Include="Infrastructure\MovieCell.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Infrastructure\MovieType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -12,12 +12,29 @@ namespace MoviesApp.iOS
 		Tmdb api;
 
 		private UITableView table;
-		private List<NowPlaying> data;
+		private List<MovieResult> data;
+		private MovieType _type;
+		private int? _movieId;
+		private string _searchQuery;
 
-		public MoviesController ()
+		public MoviesController (MovieType type, int? movieId = null, string searchQuery = null)
 		{
-			Title = "Now Playing";
+			if (type == MovieType.NowPlaying)
+				Title = "Now Playing";
+			else if (type == MovieType.Search)
+				Title = "'" + _searchQuery + "'";
+			else if (type == MovieType.Similar)
+				Title = "Similar movies";
+			else if (type == MovieType.TopRated)
+				Title = "Top Rated Movies";
+			else if (type == MovieType.Upcoming)
+				Title = "Upcoming Movies";
+			else
+				throw new InvalidOperationException("Not supported movie type " + type);
 
+			_type = type;
+			_movieId = movieId;
+			_searchQuery = searchQuery;
 			api = new Tmdb(Constants.ApiKey);
 		}
 
@@ -28,8 +45,19 @@ namespace MoviesApp.iOS
 			View.Add (table);
 
 			ThreadPool.QueueUserWorkItem (delegate {
-				var result = api.GetNowPlayingMovies(1);
-				data = result.results;
+
+				if (_type == MovieType.NowPlaying)
+					data = api.GetNowPlayingMovies(1).results;
+				else if (_type == MovieType.Upcoming)
+					data = api.GetUpcomingMovies(1).results;
+				else if (_type == MovieType.TopRated)
+					data = api.GetTopRatedMovies(1).results;
+				else if (_type == MovieType.Similar)
+					data = api.GetSimilarMovies(_movieId.Value, 1).results;
+				else if (_type == MovieType.Search) 
+					data = api.SearchMovie(_searchQuery, 1).results;
+				else 
+					throw new InvalidOperationException("Not supported movie type " + _type);
 
 				InvokeOnMainThread(delegate {
 					table.Source = new DataSource(this);
@@ -87,7 +115,7 @@ namespace MoviesApp.iOS
 			{
 				var movie = parent.data[indexPath.Row];
 
-				nextController = new MovieDetailsController(movie);
+				nextController = new MovieDetailsController(movie.id, movie.title);
 				parent.NavigationController.PushViewController (nextController, true);
 			}
 		}

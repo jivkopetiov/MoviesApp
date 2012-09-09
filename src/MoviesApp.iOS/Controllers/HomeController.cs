@@ -22,13 +22,25 @@ namespace MoviesApp.iOS
 			root.Add (new[] {
 				new Section() {
 					new StringElement("Now Playing Movies", delegate {
-						_next = new MoviesController();
+						_next = new MoviesController(MovieType.NowPlaying);
 						NavigationController.PushViewController (_next, true);
 					}),
 					new StringElement("Upcoming Movies", delegate {
-						_next = new MoviesController();
+						_next = new MoviesController(MovieType.Upcoming);
 						NavigationController.PushViewController (_next, true);
-					})
+					}),
+					new StringElement("Top Rated Movies", delegate {
+						_next = new MoviesController(MovieType.TopRated);
+						NavigationController.PushViewController (_next, true);
+					}),
+					new StringElement("Similar Movies", delegate {
+						_next = new MoviesController(MovieType.Similar, 77948);
+						NavigationController.PushViewController (_next, true);
+					}),
+					new StringElement("The Dark Knight Rises", delegate {
+						_next = new MovieDetailsController(49026, "The Dark Knight Rises");
+						NavigationController.PushViewController (_next, true);
+					}),
 				}
 			});
 

@@ -14,13 +14,12 @@ namespace MoviesApp.iOS
 		private TmdbMovie _data;
 		private TmdbMovieCast _cast;
 
-		public MovieDetailsController (NowPlaying movie)
+		public MovieDetailsController (int movieId, string movieTitle)
 		{
-			_movieId = movie.id;
+			_movieId = movieId;
 
 			_api = new Tmdb(Constants.ApiKey);
-
-			Title = movie.title;
+			Title = movieTitle;
 		}
 
 		public override void ViewDidLoad ()

@@ -21,10 +21,6 @@ namespace MoviesApp.iOS
 		
 		public static readonly bool IsHighRes = UIDevice.CurrentDevice.IsMultitaskingSupported && UIScreen.MainScreen.Scale > 1;
 
-		public static string DeviceId {
-			get { return UIDevice.CurrentDevice.UniqueIdentifier; }
-		}
-
 		public static UIViewController Root {
 			get { return _root; }
 		}
