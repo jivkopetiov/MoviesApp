@@ -449,9 +449,9 @@ namespace WatTmdb.V3
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <param name="language">optional - ISO 639-1 language code</param>
         /// <returns></returns>
-        public TmdbSimilarMovies GetSimilarMovies(int MovieID, int page, string language)
+        public TmdbMovieSearch GetSimilarMovies(int MovieID, int page, string language)
         {
-            return ProcessRequest<TmdbSimilarMovies>(BuildGetSimilarMoviesRequest(MovieID, page, language));
+            return ProcessRequest<TmdbMovieSearch>(BuildGetSimilarMoviesRequest(MovieID, page, language));
         }
 
         /// <summary>
@@ -461,7 +461,7 @@ namespace WatTmdb.V3
         /// <param name="MovieID">TMDB movie id</param>
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <returns></returns>
-        public TmdbSimilarMovies GetSimilarMovies(int MovieID, int page)
+        public TmdbMovieSearch GetSimilarMovies(int MovieID, int page)
         {
             return GetSimilarMovies(MovieID, page, Language);
         }
@@ -575,9 +575,9 @@ namespace WatTmdb.V3
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <param name="language">optional - ISO 639-1 language code</param>
         /// <returns></returns>
-        public TmdbNowPlaying GetNowPlayingMovies(int page, string language)
+        public TmdbMovieSearch GetNowPlayingMovies(int page, string language)
         {
-            return ProcessRequest<TmdbNowPlaying>(BuildGetNowPlayingMoviesRequest(page, language));
+            return ProcessRequest<TmdbMovieSearch>(BuildGetNowPlayingMoviesRequest(page, language));
         }
 
         public string GetNowPlayingMoviesETag(int page, string language)
@@ -591,7 +591,7 @@ namespace WatTmdb.V3
         /// </summary>
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <returns></returns>
-        public TmdbNowPlaying GetNowPlayingMovies(int page)
+        public TmdbMovieSearch GetNowPlayingMovies(int page)
         {
             return GetNowPlayingMovies(page, Language);
         }
@@ -608,9 +608,9 @@ namespace WatTmdb.V3
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <param name="language">optional - ISO 639-1 language code</param>
         /// <returns></returns>
-        public TmdbPopular GetPopularMovies(int page, string language)
+        public TmdbMovieSearch GetPopularMovies(int page, string language)
         {
-            return ProcessRequest<TmdbPopular>(BuildGetPopularMoviesRequest(page, language));
+            return ProcessRequest<TmdbMovieSearch>(BuildGetPopularMoviesRequest(page, language));
         }
 
         public string GetPopularMoviesETag(int page, string language)
@@ -624,7 +624,7 @@ namespace WatTmdb.V3
         /// </summary>
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <returns></returns>
-        public TmdbPopular GetPopularMovies(int page)
+        public TmdbMovieSearch GetPopularMovies(int page)
         {
             return GetPopularMovies(page, Language);
         }
@@ -641,9 +641,9 @@ namespace WatTmdb.V3
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <param name="language">optional - ISO 639-1 language code</param>
         /// <returns></returns>
-        public TmdbTopRated GetTopRatedMovies(int page, string language)
+        public TmdbMovieSearch GetTopRatedMovies(int page, string language)
         {
-            return ProcessRequest<TmdbTopRated>(BuildGetTopRatedMoviesRequest(page, language));
+            return ProcessRequest<TmdbMovieSearch>(BuildGetTopRatedMoviesRequest(page, language));
         }
 
         public string GetTopRatedMoviesETag(int page, string language)
@@ -657,7 +657,7 @@ namespace WatTmdb.V3
         /// </summary>
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <returns></returns>
-        public TmdbTopRated GetTopRatedMovies(int page)
+        public TmdbMovieSearch GetTopRatedMovies(int page)
         {
             return GetTopRatedMovies(page, Language);
         }
@@ -674,9 +674,9 @@ namespace WatTmdb.V3
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <param name="language">optional - ISO 639-1 language code</param>
         /// <returns></returns>
-        public TmdbUpcoming GetUpcomingMovies(int page, string language)
+        public TmdbMovieSearch GetUpcomingMovies(int page, string language)
         {
-            return ProcessRequest<TmdbUpcoming>(BuildGetUpcomingMoviesRequest(page, language));
+            return ProcessRequest<TmdbMovieSearch>(BuildGetUpcomingMoviesRequest(page, language));
         }
 
         public string GetUpcomingMoviesETag(int page, string language)
@@ -690,7 +690,7 @@ namespace WatTmdb.V3
         /// </summary>
         /// <param name="page">Result page to retrieve (1 based)</param>
         /// <returns></returns>
-        public TmdbUpcoming GetUpcomingMovies(int page)
+        public TmdbMovieSearch GetUpcomingMovies(int page)
         {
             return GetUpcomingMovies(page, Language);
         }

@@ -120,7 +120,6 @@
     <Compile Include="RestSharp\Validation\Require.cs" />
     <Compile Include="RestSharp\Validation\Validate.cs" />
     <Compile Include="Infrastructure\StringEx.cs" />
-    <Compile Include="WatTmdb\Tmdb.Async.cs" />
     <Compile Include="WatTmdb\Tmdb.cs" />
     <Compile Include="WatTmdb\Tmdb.Sync.cs" />
     <Compile Include="WatTmdb\TmdbAuthSession.cs" />
@@ -142,19 +141,13 @@
     <Compile Include="WatTmdb\TmdbMovieReleases.cs" />
     <Compile Include="WatTmdb\TmdbMovieSearch.cs" />
     <Compile Include="WatTmdb\TmdbMovieTrailers.cs" />
-    <Compile Include="WatTmdb\TmdbNowPlaying.cs" />
     <Compile Include="WatTmdb\TmdbPerson.cs" />
     <Compile Include="WatTmdb\TmdbPersonCredits.cs" />
     <Compile Include="WatTmdb\TmdbPersonImages.cs" />
     <Compile Include="WatTmdb\TmdbPersonSearch.cs" />
-    <Compile Include="WatTmdb\TmdbPopular.cs" />
-    <Compile Include="WatTmdb\TmdbAsyncResult.cs" />
     <Compile Include="WatTmdb\TmdbSearchResultBase.cs" />
-    <Compile Include="WatTmdb\TmdbSimilarMovies.cs" />
     <Compile Include="WatTmdb\TmdbAuthToken.cs" />
-    <Compile Include="WatTmdb\TmdbTopRated.cs" />
     <Compile Include="WatTmdb\TmdbTranslations.cs" />
-    <Compile Include="WatTmdb\TmdbUpcoming.cs" />
     <Compile Include="WatTmdb\Utility.cs" />
     <Compile Include="WatTmdb\WatJsonDeserializer.cs" />
   </ItemGroup>

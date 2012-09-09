@@ -291,7 +291,7 @@ namespace MoviesApp.Cmd
 
             Assert.Greater(result.results.Count, 1);
 
-            foreach (SimilarMovie movie in result.results)
+            foreach (var movie in result.results)
             {
                 Console.WriteLine(movie.title + " - " + movie.id + " - " + movie.poster_path + " - " + movie.release_date);
             }
