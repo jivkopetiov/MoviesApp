@@ -83,13 +83,13 @@
     <Reference Include="WatTmdb">
       <HintPath>..\MoviesApp.Core\bin\Debug\WatTmdb.dll</HintPath>
     </Reference>
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Infrastructure\LoadingDataSource.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Infrastructure\Context.cs" />
@@ -98,6 +98,8 @@
     <Compile Include="Infrastructure\LRUCache.cs" />
     <Compile Include="Controllers\MovieDetailsController.cs" />
     <Compile Include="Infrastructure\MovieCell.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

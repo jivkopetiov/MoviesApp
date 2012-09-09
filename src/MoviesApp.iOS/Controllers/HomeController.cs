@@ -1,95 +1,38 @@
 using System;
 using MonoTouch.UIKit;
-using WatTmdb.V3;
-using System.Drawing;
-using System.Threading;
-using System.Collections.Generic;
+using MonoTouch.Dialog;
 
 namespace MoviesApp.iOS
 {
 	public class HomeController : UIViewController
 	{
-		Tmdb api;
+		private DialogViewController dvc;
+		private UIViewController _next;
 
-		private UITableView table;
-		private List<NowPlaying> data;
-
-		public HomeController ()
-		{
+		public HomeController () 
+		{   
 			Title = "Home";
-
-			api = new Tmdb(Constants.ApiKey);
+			dvc = new DialogViewController(CreateRootElement(), true);
+			View.AddSubview (dvc.View);
 		}
 
-		public override void ViewDidLoad ()
-		{
-			table = new UITableView(new RectangleF(0, 0, View.Frame.Width, View.Frame.Height - 44), UITableViewStyle.Grouped);
-			table.Source = new LoadingDataSource();
-			View.Add (table);
+		private RootElement CreateRootElement() {
+			var root = new RootElement("Movies App");
 
-			ThreadPool.QueueUserWorkItem (delegate {
-				var result = api.GetNowPlayingMovies(1);
-				data = result.results;
-
-				InvokeOnMainThread(delegate {
-					table.Source = new DataSource(this);
-					table.ReloadData ();
-				});
+			root.Add (new[] {
+				new Section() {
+					new StringElement("Now Playing Movies", delegate {
+						_next = new MoviesController();
+						NavigationController.PushViewController (_next, true);
+					}),
+					new StringElement("Upcoming Movies", delegate {
+						_next = new MoviesController();
+						NavigationController.PushViewController (_next, true);
+					})
+				}
 			});
-		}
 
-		public override void ViewWillAppear (bool animated)
-		{
-			if (table != null)
-				table.DeselectRow(table.IndexPathForSelectedRow, true);
-		}
-
-		private class DataSource : UITableViewSource {
-
-			private HomeController parent;
-			private MovieDetailsController nextController;
-
-			public DataSource (HomeController parent)
-			{
-				this.parent = parent;
-			}
-
-			public override int RowsInSection (UITableView tableview, int section)
-			{
-				return parent.data.Count;
-			}
-
-			public override float GetHeightForRow (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
-			{
-				return 92;
-			}
-
-			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
-			{
-				var item = parent.data[indexPath.Row];
-
-				string text = item.title;
-				if (item.release_date.HasValue) {
-					text += " (" + item.release_date.Value.Year.ToString()  + ")";
-				}
-
-				var cell = tableView.DequeueReusableCell (MovieCell.Identifier) as MovieCell;
-				if (cell == null) {
-					cell = new MovieCell(text, null, item.poster_path, tableView);
-				}
-
-				cell.UpdateUI();
-
-				return cell;
-			}
-
-			public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
-			{
-				var movie = parent.data[indexPath.Row];
-
-				nextController = new MovieDetailsController(movie);
-				parent.NavigationController.PushViewController (nextController, true);
-			}
+			return root;
 		}
 	}
 }
