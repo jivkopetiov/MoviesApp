@@ -558,9 +558,9 @@ namespace WatTmdb.V3
         /// (http://help.themoviedb.org/kb/api/latest-movie)
         /// </summary>
         /// <returns></returns>
-        public TmdbLatestMovie GetLatestMovie()
+        public TmdbMovie GetLatestMovie()
         {
-            return ProcessRequest<TmdbLatestMovie>(BuildGetLatestMovieRequest());
+            return ProcessRequest<TmdbMovie>(BuildGetLatestMovieRequest());
         }
 
         public string GetLatestMovieETag()

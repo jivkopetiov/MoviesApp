@@ -132,7 +132,6 @@
     <Compile Include="WatTmdb\TmdbError.cs" />
     <Compile Include="WatTmdb\TmdbGenre.cs" />
     <Compile Include="WatTmdb\TmdbGenreMovies.cs" />
-    <Compile Include="WatTmdb\TmdbLatestMovie.cs" />
     <Compile Include="WatTmdb\TmdbMovie.cs" />
     <Compile Include="WatTmdb\TmdbMovieAlternateTitles.cs" />
     <Compile Include="WatTmdb\TmdbMovieCast.cs" />
