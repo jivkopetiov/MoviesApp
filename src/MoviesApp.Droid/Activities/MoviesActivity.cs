@@ -10,11 +10,12 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using WatTmdb.V3;
+using System.Threading;
 
 namespace MoviesApp.Droid
 {
     [Activity]
-    public class MoviesActivity : ListActivity
+    public class MoviesActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -26,11 +27,26 @@ namespace MoviesApp.Droid
 
             var api = new Tmdb("e7ea08e0ed9aba51ea90d5ffe68fa672");
 
-            var result = api.GetNowPlayingMovies(1);
+            var layout = new RelativeLayout(this);
+            var progressBar = new ProgressBar(this, null, Android.Resource.Attribute.ProgressBarStyleSmall);
+            layout.AddView(progressBar);
 
-            var names = result.results.Select(r => r.title).ToList();
+            SetContentView(layout);
 
-            ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, names);
+            ThreadPool.QueueUserWorkItem(delegate
+            {
+                var result = api.GetNowPlayingMovies(1);
+                var names = result.results.Select(r => r.title).ToList();
+
+                RunOnUiThread(delegate
+                {
+                    var listView = new ListView(this);
+                    listView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, names);
+                    progressBar.Visibility = ViewStates.Invisible;
+                    layout.AddView(listView);
+                    layout.RemoveView(progressBar);
+                });
+            });
         }
     }
 }
