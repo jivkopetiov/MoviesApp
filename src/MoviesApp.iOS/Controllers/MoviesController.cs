@@ -19,10 +19,15 @@ namespace MoviesApp.iOS
 
 		public MoviesController (MovieType type, int? movieId = null, string searchQuery = null)
 		{
+			_type = type;
+			_movieId = movieId;
+			_searchQuery = searchQuery;
+			api = new Tmdb(Constants.ApiKey);
+
 			if (type == MovieType.NowPlaying)
 				Title = "Now Playing";
 			else if (type == MovieType.Search)
-				Title = "'" + _searchQuery + "'";
+				Title = "Search for '" + _searchQuery + "'";
 			else if (type == MovieType.Similar)
 				Title = "Similar movies";
 			else if (type == MovieType.TopRated)
@@ -31,11 +36,6 @@ namespace MoviesApp.iOS
 				Title = "Upcoming Movies";
 			else
 				throw new InvalidOperationException("Not supported movie type " + type);
-
-			_type = type;
-			_movieId = movieId;
-			_searchQuery = searchQuery;
-			api = new Tmdb(Constants.ApiKey);
 		}
 
 		public override void ViewDidLoad ()

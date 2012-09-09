@@ -1,6 +1,7 @@
 using System;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
+using System.Drawing;
 
 namespace MoviesApp.iOS
 {
@@ -8,12 +9,27 @@ namespace MoviesApp.iOS
 	{
 		private DialogViewController dvc;
 		private UIViewController _next;
+		private UISearchBar _search;
 
-		public HomeController () 
-		{   
+		public override void ViewDidLoad ()
+		{
 			Title = "Home";
 			dvc = new DialogViewController(CreateRootElement(), true);
-			View.AddSubview (dvc.View);
+			dvc.View.Frame = new System.Drawing.RectangleF(0, 44, View.Frame.Width, View.Frame.Height);
+			View.Add(dvc.View);
+
+			_search = new UISearchBar(new RectangleF(0, 0, View.Frame.Width, 44));
+
+			_search.SearchButtonClicked += delegate {
+				if (string.IsNullOrEmpty (_search.Text)) return;
+
+				_search.ResignFirstResponder ();
+
+				_next = new MoviesController(MovieType.Search, null, _search.Text);
+				NavigationController.PushViewController(_next, true);
+			};
+
+			View.Add(_search);
 		}
 
 		private RootElement CreateRootElement() {
