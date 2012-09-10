@@ -48,5 +48,41 @@ namespace MoviesApp.Droid
                 });
             });
         }
+
+        private class DataAdapter : BaseAdapter<MovieResult>
+        {
+            public override MovieResult this[int position]
+            {
+                get { return this[position]; }
+            }
+
+            public override int Count
+            {
+                get { return this.Count; }
+            }
+
+            public override long GetItemId(int position)
+            {
+                return this[position].id;
+            }
+
+            public override View GetView(int position, View convertView, ViewGroup parent)
+            {
+                var movie = this[position];
+
+                View view = convertView;
+                if (view == null)
+                    view = new View(parent.Context, null, Android.Resource.Layout.ActivityListItem);
+
+                view.FindViewById<TextView>(Android.Resource.Id.Text1).Text = movie.title + " (" + movie.release_date.Value.Year + ")";
+                //view.FindViewById<ImageView>(Android.Resource.Id.Icon).SetImageDrawable();
+
+                return view;
+            }
+        }
     }
 }
+
+
+
+
